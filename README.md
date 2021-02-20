@@ -1,6 +1,14 @@
 # ExploratoryJHUassignment
 Exploratory Analysis on pm2.5 emission levels recorded by EPA. Coursera Assignment<br><br><br>
 
+Load the dataset as : 
+
+```R
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+```
+
+
 -----
 ## `PLOT 1`
 
