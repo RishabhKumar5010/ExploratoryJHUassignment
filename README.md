@@ -10,6 +10,17 @@ Exploratory Analysis on pm2.5 emission levels recorded by EPA. Coursera Assignme
 
 ![plot1.png](plot1.png)
 
+```R
+yearemm <- tapply(NEI$Emissions,NEI$year,sum)
+
+plot(x = names(yearemm),y = yearemm,type="l",col='red',xlab = "years",
+     ylab = "Yealy Emissions",main="Year-wise Emission Trends",
+     ylim = c(2e+06,8e+06),xlim = c(1999,2008),xaxt = 'n')
+     
+axis(side = 1, at = seq(1999,2008,3))
+points(x = names(yearemm),y = yearemm,pch = 20,cex = 2)
+```
+
 We can see a **negative trend** in emission levels of pm2.5 across years 1999 - 2008.  
 This is a good sign from an environmental perspective.
 
