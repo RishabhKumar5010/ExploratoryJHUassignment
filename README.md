@@ -8,9 +8,10 @@ Exploratory Analysis on pm2.5 emission levels recorded by EPA. Coursera Assignme
 
 `plot1.R` can be run in the same directory as the dataset to produce `plot1.png`
 
-We can see a **negative trend** in emission levels of pm2.5 across years 1999 - 2008. This is a good sign from an environmental perspective.
-
 ![plot1.png](plot1.png)
+
+>We can see a **negative trend** in emission levels of pm2.5 across years 1999 - 2008.  
+>This is a good sign from an environmental perspective.
 
 <br><br><br>
 ---
