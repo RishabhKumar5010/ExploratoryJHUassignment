@@ -1,7 +1,9 @@
 # ExploratoryJHUassignment
 Exploratory Analysis on pm2.5 emission levels recorded by EPA. Coursera Assignment<br><br><br>
 
-*Individual R files do have dataset loading statements of their own.*  
+Dataset : [Download](https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip) [~30MB]
+
+*Individual R files in this repo can be run standalone within the dataset directory*  
 *However if testing the code from here, do include the following dataset loading commands*
 
 Load the dataset as : 
