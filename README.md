@@ -55,5 +55,40 @@ points(x = names(yearemm),y = yearemm,pch = 20,cex = 2)
 ```
 
 Except for a **rise in Emission levels in 2002-2005 period**, Baltimore shows an **overall negative trend** in Emission levels from years 1999 to 2008.  
-This is a good sign from Environmental perspective.
+This is a good sign from an environmental perspective.
 
+<br><br><br>
+
+---
+## `PLOT 3`
+
+> ### Of the four types of sources indicated by the type(point, nonpoint, onroad, nonroad) variable, which of these four sources have seen decreases in emissions from 1999–2008 for Baltimore City? Which have seen increases in emissions from 1999–2008? Use the ggplot2 plotting system to make a plot answer this question.
+ 
+`plot3.R` can be run in the same directory as the dataset to produce `plot3.png`
+
+![plot3.png](plot3.png)
+
+```R
+baltimore_year_type <- with(NEI[NEI$fips=="24510",],
+                            tapply(Emissions,list(year,type),sum))
+                            
+# altering the data further, cause ggplot is too picky about the data format.
+df <- as.data.frame.table(baltimore_year_type)
+names(df) <-  c("year","type","Emissions")
+df$year <- as.numeric(as.character(df$year))
+
+# skeleton of the plot
+gg<-ggplot(df,aes(year,Emissions,col=type))+
+    geom_line()+geom_point()
+
+# tweaking the plot
+gg+xlab("Year")+ylab("Emissions  (tons)")+
+    labs(title = "Year-wise Emissions of Baltimore for all types of source")+
+    labs(color = "Source Types")+theme_bw()+  # changing legend label and overall theme
+    scale_x_continuous(breaks = unique(df$year),
+                       labels = unique(df$year))
+```
+
+except for POINT source type emissions, which had a spike in 2005 but has overall stayed the same,  
+emission through other sources have a decreasing trend.  
+This is a good sign from an environmental perspective.
