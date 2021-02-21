@@ -1,6 +1,9 @@
 # ExploratoryJHUassignment
 Exploratory Analysis on pm2.5 emission levels recorded by EPA. Coursera Assignment<br><br><br>
 
+*Individual R files do have dataset loading statements of their own.*  
+*However if testing the code from here, do include the following dataset loading commands*
+
 Load the dataset as : 
 
 ```R
