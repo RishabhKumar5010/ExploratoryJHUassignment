@@ -2,7 +2,7 @@
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-# summing emissions across years for Baltimore fips = "24510"
+# summing emissions across years
 scc_coal <- SCC$SCC[grep("[cC][oO][aA][lL]",SCC$Short.Name)]
 coal_type <- with(NEI[NEI$SCC %in% scc_coal,],
                 tapply(Emissions,list(year,type),sum))
