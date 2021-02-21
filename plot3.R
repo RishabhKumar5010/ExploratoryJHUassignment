@@ -18,8 +18,8 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
                        labels = unique(df$year))
 
 # except for POINT source type emissions, which had a spike in 2005
-# but has overall stayed the same, emission through other sources have
-# a decreasing trend.
+# and has overall experienced a slight increase, 
+# while emission through other sources have a decreasing trend.
 
 # generating png
 dev.copy(png,"plot3.png")
