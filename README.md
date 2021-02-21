@@ -94,8 +94,8 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
                        labels = unique(df$year))
 ```
 
-Except for **POINT source type emissions**, which **had a spike in 2005** but has overall stayed the same,  
-**emission** through **other sources have a decreasing trend**.  
+Except for **POINT source type emissions**, which **had a spike in 2005** but has overall experienced a slight increase,  
+while **emission** through **other sources have a decreasing trend**.  
 This is a good sign from an environmental perspective.
 
 <br><br><br>
@@ -175,4 +175,43 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
 ```
 
 We can see that in **Baltimore**, **emission from motor vehicle sources** have a **negative trend**.
+
+<br><br><br>
+
+---
+## `PLOT 6`
+
+> ### Compare emissions from motor vehicle sources in Baltimore City with emissions from motor vehicle sources in Los Angeles County, California (fips == "06037"). Which city has seen greater changes over time in motor vehicle emissions?
+
+`plot6.R` can be run in the same directory as the dataset to produce `plot6.png`
+
+![plot6.png](plot6.png)
+
+
+```R
+scc_motor_veh <- SCC$SCC[grepl("[Vv]ehicle", SCC$SCC.Level.Two)]
+b_laNEI <- NEI[NEI$fips=="24510" | NEI$fips=="06037",]
+motor_fips <- with(b_laNEI[b_laNEI$SCC %in% scc_motor_veh,],
+                   tapply(Emissions,list(year,fips),sum))
+
+
+df <- as.data.frame.table(motor_fips)
+names(df) <-  c("year","type","Emissions")
+df$year <- as.numeric(as.character(df$year))
+
+gg<-ggplot(df,aes(year,Emissions,col=type))+
+    geom_line()+geom_point()
+gg+xlab("Year")+ylab("Emissions  (tons)")+
+    labs(title = paste("Year-wise Emissions from motor vehicle sources",
+                     "(LA vs Baltimore)"))+
+    labs(color = "Source Types")+theme_bw()+
+    scale_x_continuous(breaks = unique(df$year),
+                       labels = unique(df$year))+
+    scale_color_discrete(labels = c("LA","Baltimore"))
+```
+
+In **Baltimore**, emission from motor vehicle sources have a **negative trend**
+while in **LA** the emission from motor vehicle has a **overall positive trend**.
+Also **Baltimore** has see **very less changes** in emission rates from motor vehicle
+sources **as compared to LA**
 
