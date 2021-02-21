@@ -130,5 +130,4 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
                        labels = unique(df$year))
 ```
 
-emission through POINT coal sources have a decreasing trend whereas, 
-emission though NONPOINT coal sources have almost stayed the same.
+Emission through **POINT coal sources** have a **decreasing trend** whereas, emission though **NONPOINT coal sources** have **almost stayed the same**.
