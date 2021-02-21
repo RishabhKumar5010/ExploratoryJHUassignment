@@ -33,7 +33,10 @@ We can see a **negative trend** in emission levels of pm2.5 across years 1999 - 
 This is a good sign from an environmental perspective.
 
 <br><br><br>
+
 ---
+## `PLOT 2`
+
 > ### Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008? Use the base plotting system to make a plot answering this question.
 
 `plot2.R` can be run in the same directory as the dataset to produce `plot2.png`
