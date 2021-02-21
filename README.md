@@ -92,3 +92,43 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
 Except for **POINT source type emissions**, which **had a spike in 2005** but has overall stayed the same,  
 **emission** through **other sources have a decreasing trend**.  
 This is a good sign from an environmental perspective.
+
+<br><br><br>
+
+
+---
+## `PLOT 4`
+
+> ### Across the United States, how have emissions from coal combustion-related sources changed from 1999–2008?
+ 
+`plot4.R` can be run in the same directory as the dataset to produce `plot4.png`
+
+![plot4.png](plot4.png)
+
+
+```R
+#filtering SCC containing coal in their Short.Name 
+scc_coal <- SCC$SCC[grep("[cC][oO][aA][lL]",SCC$Short.Name)]
+
+coal_type <- with(NEI[NEI$SCC %in% scc_coal,],
+                tapply(Emissions,list(year,type),sum))
+
+# altering the data to make it suitable to plot
+df <- as.data.frame.table(coal_type)
+names(df) <-  c("year","type","Emissions")
+df$year <- as.numeric(as.character(df$year))
+
+# skeleton of the plot
+gg<-ggplot(df,aes(year,Emissions,col=type))+
+    geom_line()+geom_point()
+    
+# tweaking the plot    
+gg+xlab("Year")+ylab("Emissions  (tons)")+
+    labs(title = "Year-wise Emissions from coal related sources")+
+    labs(color = "Source Types")+theme_bw()+
+    scale_x_continuous(breaks = unique(df$year),
+                       labels = unique(df$year))
+```
+
+emission through POINT coal sources have a decreasing trend whereas, 
+emission though NONPOINT coal sources have almost stayed the same.
