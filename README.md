@@ -34,3 +34,23 @@ This is a good sign from an environmental perspective.
 
 <br><br><br>
 ---
+> ### Have total emissions from PM2.5 decreased in the Baltimore City, Maryland (fips == "24510") from 1999 to 2008? Use the base plotting system to make a plot answering this question.
+
+`plot2.R` can be run in the same directory as the dataset to produce `plot2.png`
+
+![plot2.png](plot2.png)
+
+```R
+yearemm <- with(NEI[NEI$fips=="24510",],tapply(Emissions,year,sum))
+
+plot(x = names(yearemm),y = yearemm,type="l",col='red',xlab = "years",
+     ylab = "Yealy Emissions   (tons)",main="Year-wise Emission Trends for Baltimore",
+     xlim = c(1999,2008),xaxt = 'n')
+
+axis(side = 1, at = seq(1999,2008,3))
+points(x = names(yearemm),y = yearemm,pch = 20,cex = 2)
+```
+
+Except for a **rise in Emission levels in 2002-2005 period**, Baltimore shows an **overall negative trend** in Emission levels from years 1999 to 2008.  
+This is a good sign from Environmental perspective.
+
