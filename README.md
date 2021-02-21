@@ -100,7 +100,6 @@ This is a good sign from an environmental perspective.
 
 <br><br><br>
 
-
 ---
 ## `PLOT 4`
 
@@ -136,3 +135,44 @@ gg+xlab("Year")+ylab("Emissions  (tons)")+
 ```
 
 Emission through **POINT coal sources** have a **decreasing trend** whereas, emission though **NONPOINT coal sources** have **almost stayed the same**.
+
+<br><br><br>
+
+---
+## `PLOT 5`
+
+> ### How have emissions from motor vehicle sources changed from 1999–2008 in Baltimore City?
+ 
+`plot5.R` can be run in the same directory as the dataset to produce `plot5.png`
+
+![plot5.png](plot5.png)
+
+
+```R
+scc_motor_veh <- SCC$SCC[grepl("[Vv]ehicle", SCC$SCC.Level.Two)]
+
+bNEI <- NEI[NEI$fips==24510,]
+
+motor_type <- with(bNEI[bNEI$SCC %in% scc_motor_veh,],
+                  tapply(Emissions,list(year,type),sum))
+
+# processing data to make it plottable
+df <- as.data.frame.table(motor_type)
+names(df) <-  c("year","type","Emissions")
+df$year <- as.numeric(as.character(df$year))
+
+# skeleton on the plot
+gg<-ggplot(df,aes(year,Emissions,col=type))+
+    geom_line()+geom_point()
+
+# tweaking the plot
+gg+xlab("Year")+ylab("Emissions  (tons)")+
+    labs(title = "Year-wise Emissions from motor vehicle sources")+
+    labs(color = "Source Types")+theme_bw()+
+    scale_x_continuous(breaks = unique(df$year),
+                       labels = unique(df$year))
+
+```
+
+We can see that in **Baltimore**, **emission from motor vehicle sources** have a **negative trend**.
+
